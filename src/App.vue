@@ -29,26 +29,28 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   .page{
     height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: #EAEBEC;
+
+    >main{
+      flex-grow: 1;
+    }
+    >main{
+        min-width: 1024px;
+        max-width: 1440px;
+        margin: 16px 0;
+        padding: 0 16px;
+        align-self: center;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
   }
-  .page>main{
-    flex-grow: 1;
-  }
-  .page>main{
-    min-width: 1024px;
-    max-width: 1440px;
-    margin: 16px 0;
-    padding: 0 16px;
-    align-self: center;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-  }
+  
   #resumeEditor{
     width: 35%;
     background-color: #444;
