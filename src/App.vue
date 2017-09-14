@@ -17,6 +17,7 @@ import './assets/reset.css'
 import Topbar from './components/Topbar'
 import ResumeEditor from './components/ResumeEditor'
 import ResumePreview from './components/ResumePreview'
+import icons from './assets/icons'
 
 export default {
   name: 'app',
@@ -25,7 +26,11 @@ export default {
       text: '你好'
     }
   },
-  components: {Topbar, ResumeEditor, ResumePreview}
+  components: {Topbar, ResumeEditor, ResumePreview},
+  created(){
+    // 将指定的文本解析为HTML或XML,插入元素内部的第一个子节点之前
+    document.body.insertAdjacentHTML('afterbegin', icons)
+  }
 }
 </script>
 
@@ -60,6 +65,12 @@ export default {
      margin-left: 16px;
      background-color: #777;
   }
-
+  svg.icon{
+     height: 1em;
+     width: 1em;
+     fill: currentColor;
+     vertical-align: -0.1em;
+     font-size:16px;
+  }
 </style>
 
