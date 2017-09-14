@@ -26,7 +26,7 @@ module.exports = {
     port: 8080,
     autoOpenBrowser: true,
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/vue-resumer/resumer/dist',
+    assetsPublicPath: '/jrg-project-5/vue-resume/dist',
     proxyTable: {},
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
