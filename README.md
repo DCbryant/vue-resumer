@@ -1,4 +1,4 @@
-# vue-resume
+# y
 
 > A Vue.js project
 
