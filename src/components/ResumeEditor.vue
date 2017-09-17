@@ -15,7 +15,8 @@
                     <div class="subitem" v-for="subitem in resume[item.field]" :key="subitem">
                         <div class="resumeField" v-for="(value,key) in subitem" :key="key">
                             <label> {{key}} </label>
-                            <input type="text" :value="value">
+                            <input type="text" v-model="subitem[key]">
+                            <!-- 改为双向绑定 -->
                         </div>
                         <hr>
                     </div>
