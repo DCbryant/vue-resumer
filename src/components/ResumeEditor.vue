@@ -12,10 +12,10 @@
         <ol class="panels">
             <li v-for="item in resume.config" v-show="item.field === selected" :key="item">
                 <div v-if="resume[item.field] instanceof Array">
-                    <div class="subitem" v-for="subitem in resume[item.field]" :key="subitem">
+                    <div class="subitem" v-for="(subitem,i) in resume[item.field]" :key="i">
                         <div class="resumeField" v-for="(value,key) in subitem" :key="key">
                             <label> {{key}} </label>
-                            <input type="text" v-model="subitem[key]">
+                            <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
                             <!-- 改为双向绑定 -->
                         </div>
                         <hr>
@@ -23,7 +23,7 @@
                 </div>
                 <div v-else class="resumeField" v-for="(value,key) in resume[item.field]" :key="key">
                     <label> {{key}} </label>
-                    <input type="text" :value="value" @input="changeResumeField(item.field, key, $event.target.value)">
+                    <input type="text" :value="value" @input="changeResumeField(`${item.field}.${key}`, $event.target.value)">
                 </div>
             </li>
         </ol>
@@ -47,10 +47,11 @@ export default {
       }
   },
   methods:{
-      changeResumeField(field, subfield, value){
+      changeResumeField(path, value){
           this.$store.commit('updateResume',{
               field,
               subfield,
+              path,
               value
           })
       }
