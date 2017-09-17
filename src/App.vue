@@ -18,14 +18,16 @@ import Topbar from './components/Topbar'
 import ResumeEditor from './components/ResumeEditor'
 import ResumePreview from './components/ResumePreview'
 import icons from './assets/icons'
+import store from './store/index'
 
 export default {
   name: 'app',
-  data: function(){
-    return {
-      text: '你好'
-    }
-  },
+  // data: function(){
+  //   return {
+  //     text: '你好'
+  //   }
+  // },
+  store,
   components: {Topbar, ResumeEditor, ResumePreview},
   created(){
     // 将指定的文本解析为HTML或XML,插入元素内部的第一个子节点之前
