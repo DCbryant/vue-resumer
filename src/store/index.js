@@ -7,6 +7,10 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state:{
         selected: 'profile',
+        user:{
+            id: '',
+            username: ''
+        },
         resume:{
             config: [
                 { field: 'profile', icon: 'id' },
@@ -53,7 +57,7 @@ export default new Vuex.Store({
         }
     },
     mutations:{
-        initState(state,payload){
+        initState(state, payload){
             Object.assign(state, payload)
         },
         switchTab(state, payload){
@@ -63,6 +67,10 @@ export default new Vuex.Store({
         updateResume(state, { path, value }) {
             objectPath.set(state.resume, path, value)
             localStorage.setItem('state', JSON.stringify(state))
+        },
+        setUser(){
+            Object.assign(state.user, payload)
+            console.log(state.user)
         }
     },
 })

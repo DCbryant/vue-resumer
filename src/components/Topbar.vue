@@ -1,18 +1,44 @@
 <template>
-  <div id="topbar">
-      <div class="wrapper">
-          <span class="logo">Resumer</span>
-          <div class="actions">
-              <button class="primary">保存</button>
-              <button>预览</button>
-          </div>
-      </div>
-  </div>
+    <div id="topbar">
+        <div class="wrapper">
+            <span class="logo">Resumer</span>
+            <div class="actions">
+                <a class="button primary" href="#" @click.prevent="signUpDialogVisible = true">注册</a>
+                <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible = false">
+                    <SignUpForm @success="login($event)"/>
+                </MyDialog>
+                <a class="button" href="#">登录</a>
+                <button class="button primary">保存</button>
+                <button class="button">预览</button>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
+import MyDialog from './MyDialog'
+import SignUpForm from './SignUpForm'
 export default {
-  name:'Topbar'
+    name: 'Topbar',
+    data() {
+        return {
+            signUpDialogVisible: false
+        }
+    },
+    computed: {
+        user() {
+            return this.$store.state.user
+        }
+    },
+    components: {
+        MyDialog, SignUpForm
+    },
+    methods: {
+        login(user) {
+            this.signUpDialogVisible = false
+            this.$store.commit('setUser', user)
+        }
+    }
 }
 </script>
 
@@ -40,7 +66,7 @@ export default {
         }
     }
 
-    button{ // 由于加了 scoped， 所以这个 button 选择器只在本组件内有效，不会影响其他组件
+    .button{ // 由于加了 scoped， 所以这个 button 选择器只在本组件内有效，不会影响其他组件
         width: 72px;
         height: 32px;
         border: none;
@@ -48,6 +74,11 @@ export default {
         font-size: 18px;
         background-color: #ddd;
         color: #222;
+        text-decoration: none;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
         &:hover{
             box-shadow: 1px 1px 1px hsla(0, 0, 0, 0.50);
         }
@@ -57,7 +88,9 @@ export default {
         }
     }
     
-    
+    .actions > a{
+
+    }   
 </style>
 
 

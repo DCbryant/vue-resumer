@@ -1,12 +1,14 @@
 <template>
-  <div class="page">
-    <header>
-      <Topbar/>
-    </header>
-    <main>
-      <ResumeEditor/>
-      <ResumePreview/>
-    </main>
+  <div>
+    <div class="page">
+      <header>
+        <Topbar/>
+      </header>
+      <main>
+        <ResumeEditor/>
+        <ResumePreview/>
+      </main>
+  </div>
   </div>
 </template>
 
@@ -28,16 +30,17 @@ export default {
   //   }
   // },
   store,
-  components: {Topbar, ResumeEditor, ResumePreview},
+  components: { Topbar, ResumeEditor, ResumePreview},
   created(){
     // 将指定的文本解析为HTML或XML,插入元素内部的第一个子节点之前
     document.body.insertAdjacentHTML('afterbegin', icons)
     let state = localStorage.getItem('state')
-    if(state){
+    if (state) {
       state = JSON.parse(state)
     }
-    this.$store.commit('initState',state)
+    this.$store.commit('initState', state)
   }
+  
 }
 </script>
 
