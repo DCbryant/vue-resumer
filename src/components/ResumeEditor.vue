@@ -16,7 +16,7 @@
                         <div class="resumeField" v-for="(value,key) in subitem" :key="key">
                             <label> {{key}} </label>
                             <input type="text" :value="value" @input="changeResumeField(`${item.field}.${i}.${key}`, $event.target.value)">
-                            <!-- 改为双向绑定 -->
+                            <!-- 改为单向绑定 -->
                         </div>
                         <hr>
                     </div>

@@ -32,6 +32,11 @@ export default {
   created(){
     // 将指定的文本解析为HTML或XML,插入元素内部的第一个子节点之前
     document.body.insertAdjacentHTML('afterbegin', icons)
+    let state = localStorage.getItem('state')
+    if(state){
+      state = JSON.parse(state)
+    }
+    this.$store.commit('initState',state)
   }
 }
 </script>
