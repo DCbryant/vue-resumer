@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="page">
+    <div class=page>
       <header>
         <Topbar/>
       </header>
@@ -8,40 +8,34 @@
         <ResumeEditor/>
         <ResumePreview/>
       </main>
-  </div>
+    </div>
   </div>
 </template>
 
 <script>
-import 'normalize.css'
-import './assets/reset.css'
-
-import Topbar from './components/Topbar'
-import ResumeEditor from './components/ResumeEditor'
-import ResumePreview from './components/ResumePreview'
-import icons from './assets/icons'
-import store from './store/index'
-
-export default {
-  name: 'app',
-  // data: function(){
-  //   return {
-  //     text: '你好'
-  //   }
-  // },
-  store,
-  components: { Topbar, ResumeEditor, ResumePreview},
-  created(){
-    // 将指定的文本解析为HTML或XML,插入元素内部的第一个子节点之前
-    document.body.insertAdjacentHTML('afterbegin', icons)
-    let state = localStorage.getItem('state')
-    if (state) {
-      state = JSON.parse(state)
+  import 'normalize.css/normalize.css'
+  import './assets/reset.css'
+  import Topbar from './components/Topbar'
+  import ResumeEditor from './components/ResumeEditor'
+  import ResumePreview from './components/ResumePreview'
+  import icons from './assets/icons'
+  import store from './store/index'
+  import AV from './lib/leancloud'
+  import getAVUser from './lib/getAVUser'
+  export default {
+    name: 'app',
+    store,
+    components: { Topbar, ResumeEditor, ResumePreview},
+    created() {
+      document.body.insertAdjacentHTML('afterbegin', icons) //
+      let state = localStorage.getItem('state')
+      if(state){
+        state = JSON.parse(state) 
+      }
+      this.$store.commit('initState', {})
+      this.$store.commit('setUser', getAVUser())
     }
-    this.$store.commit('initState', state)
   }
-  
-}
 </script>
 
 <style lang="scss">
@@ -49,38 +43,36 @@ export default {
     height: 100vh;
     display: flex;
     flex-direction: column;
-    background-color: #EAEBEC;
-
+    background: #EAEBEC;
     >main{
-      flex-grow: 1;
+      flex-grow: 1;  
     }
     >main{
-        min-width: 1024px;
-        max-width: 1440px;
-        margin: 16px 0;
-        padding: 0 16px;
-        align-self: center;
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
+      min-width: 1024px;
+      max-width: 1440px;
+      margin-top: 16px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 16px;
+      width: 100%; /* 试试不加这句会怎样 */
+      align-self: center;
     }
   }
-  
   #resumeEditor{
     min-width: 35%;
-    background-color: #444;
+    background: #444;
   }
   #resumePreview{
-     flex-grow: 1;
-     margin-left: 16px;
-     background-color: #777;
+    flex-grow: 1;
+    margin-left: 16px;
+    background: #777;
   }
   svg.icon{
-     height: 1em;
-     width: 1em;
-     fill: currentColor;
-     vertical-align: -0.1em;
-     font-size:16px;
+    height: 1em;
+    width: 1em;
+    fill: currentColor;
+    vertical-align: -0.1em;
+    font-size:16px;
   }
 </style>
-
